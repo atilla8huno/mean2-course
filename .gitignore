@@ -41,3 +41,7 @@ jspm_packages
 
 # Compiled files
 public/
+notes-web/typings/browser.d.ts
+notes-web/app/
+notes-web/typings/
+notes-web/src/
