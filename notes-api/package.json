@@ -5,14 +5,21 @@
   "scripts": {
     "start": "node app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://atilla8huno@github.com/atilla8huno/mean2-course.git"
+  },
+  "author": "Átilla Barros <https://github.com/atilla8huno>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atilla8huno/mean2-course/issues"
+  },
+  "homepage": "https://github.com/atilla8huno/mean2-course#readme",
   "dependencies": {
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
-    "hbs": "~3.1.0",
-    "morgan": "~1.6.1",
-    "ng2-bootstrap": "^1.0.17",
-    "serve-favicon": "~2.3.0"
+    "morgan": "~1.6.1"
   }
 }
