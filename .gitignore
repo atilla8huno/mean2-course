@@ -37,8 +37,8 @@ jspm_packages
 .node_repl_history
 
 # compiled output
-/dist
-/tmp
+/notes-web/dist
+/notes-web/tmp
 
 # dependencies
 /node_modules
