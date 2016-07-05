@@ -36,12 +36,34 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# WebStorm
-.idea/
+# compiled output
+/dist
+/tmp
 
-# Compiled files
-public/
-notes-web/typings/browser.d.ts
-notes-web/app/
-notes-web/typings/
-notes-web/src/
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/notes-web/typings
+
+# e2e
+/notes-web/e2e/*.js
+/notes-web/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
