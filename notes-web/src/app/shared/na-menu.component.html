@@ -1,0 +1,13 @@
+<header>
+    <nav class="left">
+        <ul>
+            <li><a [routerLink]="['signin']">Entrar</a></li>
+            <li><a [routerLink]="['signup']">Nova Conta</a></li>
+        </ul>
+    </nav>
+    <nav class="right">
+        <ul>
+            <li><a (click)="logout()">Logout</a></li>
+        </ul>
+    </nav>
+</header>
