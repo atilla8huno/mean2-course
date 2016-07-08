@@ -6,21 +6,25 @@ var router = express.Router();
 var NoteService = require('../services/note.service');
 var Note = require('../model/note');
 
-router.get('/note/:id', function (req, res, next) {
+router.get('/:id', function (req, res, next) {
     var id = req.params.id;
 
     NoteService.findById(id)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
 });
 
-router.get('/notes', function (req, res, next) {
+router.get('/all', function (req, res, next) {
     NoteService.getAll(id)
         .then(function (docs) {
             console.log(docs);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
@@ -35,6 +39,8 @@ router.post('/create', function (req, res, next) {
     NoteService.create(note)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
@@ -50,6 +56,8 @@ router.put('/update', function (req, res, next) {
     NoteService.update(note)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
@@ -61,6 +69,8 @@ router.delete('/delete/:id', function (req, res, next) {
     NoteService.delete(id)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });

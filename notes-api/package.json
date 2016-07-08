@@ -22,6 +22,7 @@
     "express": "~4.13.4",
     "jade": "~1.11.0",
     "mongoose": "^4.5.3",
+    "mongoose-unique-validator": "^1.0.2",
     "morgan": "~1.7.0",
     "promise": "^7.1.1",
     "serve-favicon": "~2.3.0"

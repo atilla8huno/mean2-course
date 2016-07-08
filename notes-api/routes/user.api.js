@@ -6,21 +6,25 @@ var router = express.Router();
 var UserService = require('../services/user.service');
 var User = require('../model/user');
 
-router.get('/user/:id', function (req, res, next) {
+router.get('/:id', function (req, res, next) {
     var id = req.params.id;
 
     UserService.findById(id)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
 });
 
-router.get('/users', function (req, res, next) {
+router.get('/all', function (req, res, next) {
     UserService.getAll(id)
         .then(function (docs) {
             console.log(docs);
+
+            res.status(200).json(docs);
         }, function (error) {
 
         });
@@ -36,6 +40,8 @@ router.post('/create', function (req, res, next) {
     UserService.create(user)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
@@ -52,6 +58,8 @@ router.put('/update', function (req, res, next) {
     UserService.update(user)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
@@ -63,6 +71,8 @@ router.delete('/delete/:id', function (req, res, next) {
     UserService.delete(id)
         .then(function (doc) {
             console.log(doc);
+
+            res.status(200).json(doc);
         }, function (error) {
 
         });
