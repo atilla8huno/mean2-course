@@ -1,0 +1,8 @@
+{
+  "serverName": "mongodb",
+  "username": "mean",
+  "password": "mean",
+  "dns": "ds011745",
+  "port": "11745",
+  "database": "todomeancourse"
+}
