@@ -6,7 +6,7 @@ var router = express.Router();
 var NoteService = require('../services/note.service');
 
 router.get('/note/:id', function (req, res, next) {
-
+    
 });
 
 router.get('/notes', function (req, res, next) {

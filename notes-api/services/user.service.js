@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose');
 var User = require('../model/user');
+var Promise = require('promise');
 
 var Service = {
     create: createUser,
@@ -11,20 +12,28 @@ var Service = {
     getAll: getAllUsers
 };
 
-function createUser(note) {
+function createUser(user) {
+    return new Promise(function (resolve, reject) {
 
+    });
 }
 
-function updateUser(note) {
+function updateUser(user) {
+    return new Promise(function (resolve, reject) {
 
+    });
 }
 
 function deleteUser(id) {
+    return new Promise(function (resolve, reject) {
 
+    });
 }
 
 function getAllUsers() {
+    return new Promise(function (resolve, reject) {
 
+    });
 }
 
 module.exports = Service;
