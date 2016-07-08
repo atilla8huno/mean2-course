@@ -1,9 +1,9 @@
 /**
  * Created by atilla8huno on 07/07/16.
  */
-var mongoose = require('mongoose');
 var Note = require('../model/note');
 var Promise = require('promise');
+var UserService = require('./user.service');
 
 var Service = {
     create: createNote,
@@ -15,31 +15,62 @@ var Service = {
 
 function createNote(note) {
     return new Promise(function (resolve, reject) {
-        resolve({ temp: 'Ok' });
+        UserService.findById(note.user)
+            .then(function (user) {
+                note.save(function (err, doc) {
+                    if (err) return reject(err);
+
+                    user.notes.push(doc);
+                    UserService.update(user);
+                    
+                    resolve(doc);
+                });
+            }, function (error) {
+                return reject(error);
+            });
     });
 }
 
 function updateNote(note) {
     return new Promise(function (resolve, reject) {
-        resolve({ temp: 'Ok' });
+        Note.findByIdAndUpdate(note._id, note, function (err, doc) {
+            if (err) return reject(err);
+            
+            resolve(doc);
+        });
     });
 }
 
 function deleteNote(id) {
     return new Promise(function (resolve, reject) {
-        resolve({ temp: 'Ok' });
+        Note.findByIdAndRemove(id, function (err, result) {
+            if (err) return reject(err);
+            
+            resolve(result);
+        });
     });
 }
 
 function findById(id) {
     return new Promise(function (resolve, reject) {
-        resolve({ temp: 'Ok' });
+        Note.findById(id, function (err, doc) {
+            if (err) return reject(err);
+            
+            resolve(doc);
+        });
     });
 }
 
 function getAllNotes() {
     return new Promise(function (resolve, reject) {
-        resolve({ temp: 'Ok' });
+        Note.find()
+            .populate('user', 'title', 'description')
+            .exec(function (err, docs) {
+                if (err) return reject(err);
+                if (!docs) return reject('Nenhuma nota encontrada.');
+
+                resolve(docs);
+            });
     });
 }
 

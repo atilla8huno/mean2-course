@@ -1,9 +1,9 @@
 /**
- * Created by @atilla8huno on 05/07/2016.
+ * Created by atilla8huno on 05/07/2016.
  */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var User = require('../model/user');
+var UserService = require('../services/user.service');
 
 var noteSchema = new Schema({
     title: { type: String, required: true },
@@ -14,11 +14,12 @@ var noteSchema = new Schema({
 
 noteSchema.post('remove', function(doc) {
     var deletedNote = doc;
-    
-    User.findById(doc.user, function(err, doc) {
-        doc.notes.pull(deletedNote);
-        doc.save();
-    });
+
+    UserService.findById(doc.user)
+        .then(function (user) {
+            user.notes.pull(deletedNote);
+            UserService.update(user);
+        });
 });
 
 module.exports = mongoose.model('Note', noteSchema);

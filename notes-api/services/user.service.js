@@ -24,41 +24,35 @@ function createUser(user) {
 
 function updateUser(user) {
     return new Promise(function (resolve, reject) {
-        User.findById(user._id, function (err, doc) {
+        User.findByIdAndUpdate(user._id, user, function (err, doc) {
             if (err) return reject(err);
-            if (!doc) return reject('Usuário não encontrado.');
-
-            doc.save(function (error, result) {
-                if (error) return reject(error);
-
-                resolve(result);
-            });
+            
+            resolve(doc);
         });
     });
 }
 
 function deleteUser(id) {
     return new Promise(function (resolve, reject) {
-        User.findById(id, function (err, doc) {
+        User.findByIdAndRemove(id, function (err, result) {
             if (err) return reject(err);
-            if (!doc) return reject('Usuário não encontrado.');
-
-            doc.remove(function (error, result) {
-                if (error) return reject(error);
-
-                resolve(result);
-            });
+            
+            resolve(result);
         });
     });
 }
 
 function findById(id) {
     return new Promise(function (resolve, reject) {
-        User.findById(id, function (err, doc) {
+        var criteria = {
+            _id: id
+        };
+        
+        User.find(criteria, function (err, doc) {
             if (err) return reject(err);
             if (!doc) return reject('Usuário não encontrado.');
 
-            resolve(result);
+            resolve(doc);
         });
     });
 }
