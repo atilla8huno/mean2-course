@@ -33,7 +33,8 @@ router.get('/all', function (req, res, next) {
 router.post('/create', function (req, res, next) {
     var note = new Note({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        user: req.body.user
     });
 
     NoteService.create(note)
