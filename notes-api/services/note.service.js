@@ -16,12 +16,9 @@ var Service = {
 function createNote(note) {
     return new Promise(function (resolve, reject) {
         UserService.findById(note.user)
-            .then(function (user) {
+            .then(function () {
                 note.save(function (err, doc) {
                     if (err) return reject(err);
-
-                    user.notes.push(doc);
-                    UserService.update(user);
                     
                     resolve(doc);
                 });
@@ -35,6 +32,7 @@ function updateNote(note) {
     return new Promise(function (resolve, reject) {
         Note.findByIdAndUpdate(note._id, note, function (err, doc) {
             if (err) return reject(err);
+            if (!doc) return reject('Nota não encontrada.');
             
             resolve(doc);
         });
@@ -43,10 +41,11 @@ function updateNote(note) {
 
 function deleteNote(id) {
     return new Promise(function (resolve, reject) {
-        Note.findByIdAndRemove(id, function (err, result) {
+        Note.findByIdAndRemove(id, function (err, doc) {
             if (err) return reject(err);
+            if (!doc) return reject('Nota não encontrada.');
             
-            resolve(result);
+            resolve(doc);
         });
     });
 }
@@ -55,6 +54,7 @@ function findById(id) {
     return new Promise(function (resolve, reject) {
         Note.findById(id, function (err, doc) {
             if (err) return reject(err);
+            if (!doc) return reject('Nota não encontrada.');
             
             resolve(doc);
         });
@@ -63,14 +63,13 @@ function findById(id) {
 
 function getAllNotes() {
     return new Promise(function (resolve, reject) {
-        Note.find()
-            .populate('user', 'title', 'description')
-            .exec(function (err, docs) {
-                if (err) return reject(err);
-                if (!docs) return reject('Nenhuma nota encontrada.');
+        var criteria = {};
+        
+        Note.find(criteria, function (err, docs) {
+            if (err) return reject(err);
 
-                resolve(docs);
-            });
+            resolve(docs);
+        });
     });
 }
 

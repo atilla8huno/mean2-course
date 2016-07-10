@@ -18,7 +18,29 @@ noteSchema.post('remove', function(doc) {
     UserService.findById(doc.user)
         .then(function (user) {
             user.notes.pull(deletedNote);
-            UserService.update(user);
+            
+            UserService.update(user)
+                .then(function () {
+                    console.log('User notes updated!');
+                }, function () {
+                    console.log('Couldn\'t update user notes!');
+                });
+        });
+});
+
+noteSchema.post('save', function(doc) {
+    var newNote = doc;
+
+    UserService.findById(doc.user)
+        .then(function (user) {
+            user.notes.push(newNote);
+            
+            UserService.update(user)
+                .then(function () {
+                    console.log('User notes updated!');
+                }, function () {
+                    console.log('Couldn\'t update user notes!');
+                });
         });
 });
 

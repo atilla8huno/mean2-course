@@ -14,8 +14,6 @@ var Service = {
 
 function createUser(user) {
     return new Promise(function (resolve, reject) {
-        console.log('CREATE USER');
-
         user.save(function (err, doc) {
             if (err) return reject(err);
 
@@ -67,7 +65,6 @@ function getAllUsers() {
 
         User.find(criteria, function (err, docs) {
             if (err) return reject(err);
-            if (!docs) return reject('Nenhum usuário encontrado.');
 
             resolve(docs);
         });

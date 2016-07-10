@@ -41,7 +41,7 @@ router.post('/create', function (req, res, next) {
         .then(function (doc) {
             console.log(doc);
 
-            res.header('Location', '/user/' + doc._id);
+            res.header('Location', '/user/id/' + doc._id);
             res.status(201).json(doc);
         }, function (error) {
             res.status(404).json(error);
@@ -72,6 +72,7 @@ router.delete('/delete/:id', function (req, res, next) {
 
     UserService.delete(id)
         .then(function (doc) {
+            // the OLD doc
             console.log(doc);
 
             res.status(200).json(doc);

@@ -6,7 +6,7 @@ var router = express.Router();
 var NoteService = require('../services/note.service');
 var Note = require('../model/note');
 
-router.get('/:id', function (req, res, next) {
+router.get('/id/:id', function (req, res, next) {
     var id = req.params.id;
 
     NoteService.findById(id)
@@ -15,18 +15,18 @@ router.get('/:id', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
 router.get('/all', function (req, res, next) {
-    NoteService.getAll(id)
+    NoteService.getAll()
         .then(function (docs) {
             console.log(docs);
 
-            res.status(200).json(doc);
+            res.status(200).json(docs);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
@@ -41,9 +41,10 @@ router.post('/create', function (req, res, next) {
         .then(function (doc) {
             console.log(doc);
 
-            res.status(200).json(doc);
+            res.header('Location', '/note/id/' + doc._id);
+            res.status(201).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
@@ -56,11 +57,12 @@ router.put('/update', function (req, res, next) {
 
     NoteService.update(note)
         .then(function (doc) {
+            // the OLD doc
             console.log(doc);
 
             res.status(200).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
@@ -69,11 +71,12 @@ router.delete('/delete/:id', function (req, res, next) {
 
     NoteService.delete(id)
         .then(function (doc) {
+            // the OLD doc
             console.log(doc);
 
             res.status(200).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 

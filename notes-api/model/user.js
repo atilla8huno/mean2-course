@@ -9,6 +9,7 @@ var userSchema = new Schema({
     fullName: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true },
+    created: { type: Date, default: Date.now },
     notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
 });
 
