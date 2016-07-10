@@ -6,7 +6,7 @@ var router = express.Router();
 var NoteService = require('../services/note.service');
 var Note = require('../model/note');
 
-router.get('/id/:id', function (req, res, next) {
+router.get('/by-id/:id', function (req, res, next) {
     var id = req.params.id;
 
     NoteService.findById(id)
@@ -18,6 +18,20 @@ router.get('/id/:id', function (req, res, next) {
             res.status(404).json(error);
         });
 });
+
+router.get('/by-user/:user', function (req, res, next) {
+    var user = req.params.user;
+
+    NoteService.findByUser(user)
+        .then(function (doc) {
+            console.log(doc);
+
+            res.status(200).json(doc);
+        }, function (error) {
+            res.status(404).json(error);
+        });
+});
+
 
 router.get('/all', function (req, res, next) {
     NoteService.getAll()

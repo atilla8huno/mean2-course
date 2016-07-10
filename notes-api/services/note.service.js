@@ -10,6 +10,7 @@ var Service = {
     update: updateNote,
     delete: deleteNote,
     findById: findById,
+    findByUser: findByUser,
     getAll: getAllNotes
 };
 
@@ -65,6 +66,20 @@ function getAllNotes() {
     return new Promise(function (resolve, reject) {
         var criteria = {};
         
+        Note.find(criteria, function (err, docs) {
+            if (err) return reject(err);
+
+            resolve(docs);
+        });
+    });
+}
+
+function findByUser(user) {
+    return new Promise(function (resolve, reject) {
+        var criteria = {
+            user: user
+        };
+
         Note.find(criteria, function (err, docs) {
             if (err) return reject(err);
 

@@ -17,7 +17,7 @@ router.get('/all', function (req, res, next) {
         });
 });
 
-router.get('/id/:id', function (req, res, next) {
+router.get('/by-id/:id', function (req, res, next) {
     var id = req.params.id;
 
     UserService.findById(id)
