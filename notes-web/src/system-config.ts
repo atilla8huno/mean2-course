@@ -7,10 +7,13 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'moment': 'vendor/moment/moment.js',
+  'ng2-bootstrap': 'vendor/ng2-bootstrap'
 };
 
 /** User packages configuration. */
 const packages: any = {
+    'ng2-bootstrap': 'ng2-bootstrap.js'
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +37,8 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/na-login',
+  'app/na-new-account',
   /** @cli-barrel */
 ];
 
