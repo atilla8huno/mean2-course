@@ -1,1 +1,27 @@
-<div>New Account</div>
+<div class="container">
+    <h1>Nova Conta</h1>
+
+    <form (submit)="criarConta()">
+        <div class="form-group">
+            <label for="fullName">Nome Completo</label>
+            <input type="text" class="form-control" [(ngModel)]="user.fullName" id="fullName" name="fullName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" [(ngModel)]="user.email" name="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" [(ngModel)]="user.password" name="password" id="password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="senhaConfirm">Confirme a Senha</label>
+            <input type="password" class="form-control" [(ngModel)]="user.passwordConfirm" id="senhaConfirm" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+    </form>
+</div>

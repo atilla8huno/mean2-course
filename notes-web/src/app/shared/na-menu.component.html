@@ -1,13 +1,9 @@
 <header>
-    <nav class="left">
-        <ul>
-            <li><a [routerLink]="['signin']">Entrar</a></li>
-            <li><a [routerLink]="['signup']">Nova Conta</a></li>
-        </ul>
-    </nav>
-    <nav class="right">
-        <ul>
-            <li><button type="button" (click)="logout()">Logout</button></li>
+    <nav>
+        <ul class="nav nav-pills">
+            <li><a class="nav-item" [routerLink]="['signin']" routerLinkActive="router-link-active">Entrar</a></li>
+            <li><a class="nav-item" [routerLink]="['signup']" routerLinkActive="router-link-active">Nova Conta</a></li>
+            <li><a class="nav-item" href="#" (click)="logout()">Logout</a></li>
         </ul>
     </nav>
 </header>
