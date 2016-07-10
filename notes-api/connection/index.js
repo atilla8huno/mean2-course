@@ -15,6 +15,8 @@ const URL = '' +
 var connection = {
     connect: function () {
         mongoose.connect(URL);
+        
+        console.log('MongoDB connected at ' + URL);
     }
 };
 

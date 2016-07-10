@@ -14,6 +14,8 @@ var Service = {
 
 function createUser(user) {
     return new Promise(function (resolve, reject) {
+        console.log('CREATE USER');
+
         user.save(function (err, doc) {
             if (err) return reject(err);
 
@@ -26,6 +28,7 @@ function updateUser(user) {
     return new Promise(function (resolve, reject) {
         User.findByIdAndUpdate(user._id, user, function (err, doc) {
             if (err) return reject(err);
+            if (!doc) return reject('Usuário não encontrado.');
             
             resolve(doc);
         });
@@ -34,10 +37,11 @@ function updateUser(user) {
 
 function deleteUser(id) {
     return new Promise(function (resolve, reject) {
-        User.findByIdAndRemove(id, function (err, result) {
+        User.findByIdAndRemove(id, function (err, doc) {
             if (err) return reject(err);
+            if (!doc) return reject('Usuário não encontrado.');
             
-            resolve(result);
+            resolve(doc);
         });
     });
 }
@@ -59,14 +63,14 @@ function findById(id) {
 
 function getAllUsers() {
     return new Promise(function (resolve, reject) {
-        User.find()
-            .populate('fullName', 'email')
-            .exec(function (err, docs) {
-                if (err) return reject(err);
-                if (!docs) return reject('Nenhum usuário encontrado.');
+        var criteria = {};
 
-                resolve(docs);
-            });
+        User.find(criteria, function (err, docs) {
+            if (err) return reject(err);
+            if (!docs) return reject('Nenhum usuário encontrado.');
+
+            resolve(docs);
+        });
     });
 }
 

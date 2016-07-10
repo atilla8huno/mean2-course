@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var connection = require('./connection');
+
 var routes = require('./routes/index');
 var noteRoutes = require('./routes/note.api');
 var userRoutes = require('./routes/user.api');
@@ -23,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORs enabled
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token');
@@ -30,9 +33,12 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/', routes);
 app.use('/note', noteRoutes);
 app.use('/user', userRoutes);
+app.use('/', routes);
+
+// MongoDB connection
+connection.connect();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

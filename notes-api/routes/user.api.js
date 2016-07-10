@@ -6,7 +6,18 @@ var router = express.Router();
 var UserService = require('../services/user.service');
 var User = require('../model/user');
 
-router.get('/:id', function (req, res, next) {
+router.get('/all', function (req, res, next) {
+    UserService.getAll()
+        .then(function (docs) {
+            console.log(docs);
+
+            res.status(200).json(docs);
+        }, function (error) {
+            res.status(404).json(error);
+        });
+});
+
+router.get('/id/:id', function (req, res, next) {
     var id = req.params.id;
 
     UserService.findById(id)
@@ -15,18 +26,7 @@ router.get('/:id', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-
-        });
-});
-
-router.get('/all', function (req, res, next) {
-    UserService.getAll(id)
-        .then(function (docs) {
-            console.log(docs);
-
-            res.status(200).json(docs);
-        }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
@@ -41,9 +41,10 @@ router.post('/create', function (req, res, next) {
         .then(function (doc) {
             console.log(doc);
 
-            res.status(200).json(doc);
+            res.header('Location', '/user/' + doc._id);
+            res.status(201).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
@@ -57,11 +58,12 @@ router.put('/update', function (req, res, next) {
 
     UserService.update(user)
         .then(function (doc) {
+            // the OLD doc
             console.log(doc);
 
             res.status(200).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 
@@ -74,7 +76,7 @@ router.delete('/delete/:id', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-
+            res.status(404).json(error);
         });
 });
 

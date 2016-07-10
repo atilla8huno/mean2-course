@@ -2,7 +2,7 @@
   "serverName": "mongodb",
   "username": "mean",
   "password": "mean",
-  "dns": "ds011745",
+  "dns": "ds011745.mlab.com",
   "port": "11745",
   "database": "todomeancourse"
 }
