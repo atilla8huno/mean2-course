@@ -39,7 +39,7 @@ const barrels: string[] = [
   'app/shared',
   'app/na-login',
   'app/na-new-account',
-  'app/user',
+  'app/model',
   /** @cli-barrel */
 ];
 
@@ -61,5 +61,5 @@ System.config({
   packages: cliSystemConfigPackages
 });
 
-// Apply the user's configuration.
+// Apply the model's configuration.
 System.config({ map, packages });

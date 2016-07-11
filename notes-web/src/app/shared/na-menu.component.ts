@@ -15,5 +15,6 @@ export class NaMenuComponent {
 
     logout() {
         console.log('Logged out!');
+        localStorage.clear();
     }
 }

@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
-import {User} from "../user/user";
+import {User} from "../model/user";
+import {HttpClient} from "../shared/http-client";
 /**
  * Created by asbarros on 06/07/2016.
  */
@@ -7,16 +8,19 @@ import {User} from "../user/user";
     moduleId: module.id,
     selector: 'na-new-account',
     templateUrl: 'na-new-account.component.html',
-    styleUrls: ['../app.component.css', 'na-new-account.component.css']
+    styleUrls: ['../app.component.css', 'na-new-account.component.css'],
+    providers: [HttpClient]
 })
 export class NaNewAccountComponent {
-    public user: User;
-    
-    constructor() {
-        this.user = new User('', '', '');
+    public user:User;
+    public users:Array<User>;
+
+    constructor(private _httpClient: HttpClient) {
+        this.users = [];
+        this.user = new User('', '', '', '');
     }
 
     criarConta() {
-        console.log(JSON.stringify(this.user));
+        console.log('User account has been created!');
     }
 }
