@@ -4,7 +4,7 @@
 var mongoose = require('mongoose');
 var mongodb = require('./mongodb');
 
-const URL = '' +
+const URI = '' +
     mongodb.serverName + '://' +
     mongodb.username + ':' +
     mongodb.password + '@' +
@@ -14,9 +14,11 @@ const URL = '' +
 
 var connection = {
     connect: function () {
-        mongoose.connect(URL);
-        
-        console.log('MongoDB connected at ' + URL);
+        mongoose.connect(URI, function (err) {
+            if (err) throw err;
+
+            console.log('MongoDB connected at ' + URI);
+        });
     }
 };
 

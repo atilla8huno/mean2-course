@@ -7,7 +7,7 @@ var UserService = require('../services/user.service');
 var User = require('../model/user');
 
 router.get('/all', function (req, res, next) {
-    UserService.getAll()
+    UserService.findAll()
         .then(function (docs) {
             console.log(docs);
 

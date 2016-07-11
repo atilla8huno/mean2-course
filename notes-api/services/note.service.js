@@ -11,7 +11,7 @@ var Service = {
     delete: deleteNote,
     findById: findById,
     findByUser: findByUser,
-    getAll: getAllNotes
+    findAll: findAll
 };
 
 function createNote(note) {
@@ -62,7 +62,7 @@ function findById(id) {
     });
 }
 
-function getAllNotes() {
+function findAll() {
     return new Promise(function (resolve, reject) {
         var criteria = {};
         

@@ -34,7 +34,7 @@ router.get('/by-user/:user', function (req, res, next) {
 
 
 router.get('/all', function (req, res, next) {
-    NoteService.getAll()
+    NoteService.findAll()
         .then(function (docs) {
             console.log(docs);
 

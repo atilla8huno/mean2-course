@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var connection = require('./connection');
 
-var routes = require('./routes/index');
+var defaultRoutes = require('./routes/index');
 var noteRoutes = require('./routes/note.api');
 var userRoutes = require('./routes/user.api');
 
@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 
 app.use('/note', noteRoutes);
 app.use('/user', userRoutes);
-app.use('/', routes);
+app.use('/', defaultRoutes);
 
 // MongoDB connection
 connection.connect();

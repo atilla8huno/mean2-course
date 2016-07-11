@@ -9,7 +9,7 @@ var Service = {
     update: updateUser,
     delete: deleteUser,
     findById: findById,
-    getAll: getAllUsers
+    findAll: findAll
 };
 
 function createUser(user) {
@@ -59,7 +59,7 @@ function findById(id) {
     });
 }
 
-function getAllUsers() {
+function findAll() {
     return new Promise(function (resolve, reject) {
         var criteria = {};
 
