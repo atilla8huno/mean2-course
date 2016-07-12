@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span>Note {{note.title}}</span>
+    </div>
+
+    <div class="panel-body">
+        <span>Note {{note.description}}</span>
+    </div>
+
+    <div class="panel-footer clearfix">
+        <button class="btn btn-danger pull-right" *ngIf="note._id">Excluir</button>
+        <button class="btn btn-primary pull-right" *ngIf="!note._id">Salvar</button>
+        <button class="btn btn-default pull-right" *ngIf="note._id">Editar</button>
+    </div>
+</div>

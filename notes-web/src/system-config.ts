@@ -40,6 +40,8 @@ const barrels: string[] = [
   'app/na-login',
   'app/na-new-account',
   'app/model',
+  'app/na-note',
+  'app/na-notes-list',
   /** @cli-barrel */
 ];
 
