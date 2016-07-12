@@ -5,7 +5,8 @@ import {Component} from "@angular/core";
 @Component({
     moduleId: module.id,
     selector: 'na-login',
-    templateUrl: 'na-login.component.html'
+    templateUrl: 'na-login.component.html',
+    styleUrls: ['na-login.component.css']
 })
 export class NaLoginComponent {
     constructor() {}
