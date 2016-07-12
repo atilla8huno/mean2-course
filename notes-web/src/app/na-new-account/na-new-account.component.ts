@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {User} from "../model/user";
 import {HttpClient} from "../shared/http-client";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 /**
  * Created by asbarros on 06/07/2016.
  */
@@ -9,7 +10,8 @@ import {HttpClient} from "../shared/http-client";
     selector: 'na-new-account',
     templateUrl: 'na-new-account.component.html',
     styleUrls: ['../app.component.css', 'na-new-account.component.css'],
-    providers: [HttpClient]
+    providers: [HttpClient],
+    directives: [ROUTER_DIRECTIVES]
 })
 export class NaNewAccountComponent {
     public user:User;
