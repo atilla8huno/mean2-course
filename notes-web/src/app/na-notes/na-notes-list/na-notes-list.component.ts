@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {NaNoteComponent} from "../na-note/na-note.component";
-import {Note} from "../model/note";
+import {Note} from "../../model/note";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
   moduleId: module.id,
   selector: 'na-notes-list',
   templateUrl: 'na-notes-list.component.html',
   styleUrls: ['na-notes-list.component.css'],
-  directives: [NaNoteComponent]
+  directives: [NaNoteComponent, ROUTER_DIRECTIVES]
 })
 export class NaNotesListComponent implements OnInit {
     
-    public notes: Array<Note> = [];
+    public notes: Note[];
   
     constructor() {}
 
     ngOnInit() {
+        this.notes = [];
+
         this.notes.push(new Note('123', 'Note 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ' +
             'eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ' +
             'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in ' +

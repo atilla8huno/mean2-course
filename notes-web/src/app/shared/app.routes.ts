@@ -1,17 +1,18 @@
 import {RouterConfig, provideRouter} from "@angular/router";
 import {NaLoginComponent} from "../na-login/na-login.component";
 import {NaNewAccountComponent} from "../na-new-account/na-new-account.component";
-import {NaNotesListComponent} from "../na-notes-list/na-notes-list.component";
+import {NaNotesComponent} from "../na-notes/na-notes.component";
+import {NOTES_ROUTES} from "../na-notes/na-notes.routes";
 
 /**
  * Created by atilla8huno on 06/07/16.
  */
 
 export const routes: RouterConfig = [
-    {path: '', component: NaLoginComponent},
-    {path: 'signin', component: NaLoginComponent},
-    {path: 'signup', component: NaNewAccountComponent},
-    {path: 'notes', component: NaNotesListComponent}
+    { path: '', redirectTo: '/signin', pathMatch: 'full' },
+    { path: 'signin', component: NaLoginComponent },
+    { path: 'signup', component: NaNewAccountComponent },
+    { path: 'notes', component: NaNotesComponent, children: NOTES_ROUTES }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

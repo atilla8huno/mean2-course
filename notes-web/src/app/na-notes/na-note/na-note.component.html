@@ -8,8 +8,7 @@
     </div>
 
     <div class="panel-footer clearfix">
-        <button class="btn btn-danger pull-right" *ngIf="note._id">Excluir</button>
-        <button class="btn btn-primary pull-right" *ngIf="!note._id">Salvar</button>
-        <button class="btn btn-default pull-right" *ngIf="note._id">Editar</button>
+        <button class="btn btn-danger pull-right" *ngIf="note._id" (click)="excluir()">Excluir</button>
+        <a class="btn btn-default pull-right" *ngIf="note._id" [routerLink]="[note._id]">Editar</a>
     </div>
 </div>
