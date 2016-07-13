@@ -10,7 +10,5 @@ import {NaNotesListComponent} from "./na-notes-list/na-notes-list.component";
     directives: [NaNotesListComponent, ROUTER_DIRECTIVES]
 })
 export class NaNotesComponent {
-
-    constructor() {}
     
 }

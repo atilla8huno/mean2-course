@@ -19,7 +19,7 @@ export class NaNotesListComponent implements OnInit {
     ngOnInit() {
         this.notes = [];
 
-        this.notes.push(new Note('123', 'Note 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ' +
+        this.notes.push(new Note('578278b46484890427f0e16d', 'Note 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ' +
             'eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ' +
             'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in ' +
             'reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat ' +
