@@ -1,10 +1,18 @@
 <header>
     <nav>
         <ul class="nav nav-pills">
-            <li><a class="nav-item" [routerLink]="['signin']" routerLinkActive="router-link-active">Entrar</a></li>
-            <li><a class="nav-item" [routerLink]="['signup']" routerLinkActive="router-link-active">Nova Conta</a></li>
-            <li><a class="nav-item" [routerLink]="['notes']" routerLinkActive="router-link-active">Notes</a></li>
-            <li><a class="nav-item" href="#" (click)="logout()">Logout</a></li>
+            <li routerLinkActive="active">
+                <a class="nav-item" [routerLink]="['/signin']" *ngIf="!isAuthenticated()">Entrar</a>
+            </li>
+            <li routerLinkActive="active">
+                <a class="nav-item" [routerLink]="['/signup']" *ngIf="!isAuthenticated()">Nova Conta</a>
+            </li>
+            <li routerLinkActive="active">
+                <a class="nav-item" [routerLink]="['/notes']" *ngIf="isAuthenticated()">Notes</a>
+            </li>
+            <li>
+                <a class="nav-item" style="cursor: pointer;" (click)="logout()" *ngIf="isAuthenticated()">Logout</a>
+            </li>
         </ul>
     </nav>
 </header>

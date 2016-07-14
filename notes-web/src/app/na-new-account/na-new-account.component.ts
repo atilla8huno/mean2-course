@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
+
 import {User} from "../model/user";
-import {HttpClient} from "../shared/http-client";
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {AuthService} from "../shared/auth.service";
 /**
  * Created by asbarros on 06/07/2016.
  */
@@ -10,19 +11,17 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
     selector: 'na-new-account',
     templateUrl: 'na-new-account.component.html',
     styleUrls: ['../app.component.css', 'na-new-account.component.css'],
-    providers: [HttpClient],
     directives: [ROUTER_DIRECTIVES]
 })
 export class NaNewAccountComponent {
-    public user:User;
-    public users:Array<User>;
+    public user: User = new User(null, null, null, null);
+    public users: Array<User> = [];
 
-    constructor(private _httpClient: HttpClient) {
-        this.users = [];
-        this.user = new User('', '', '', '');
-    }
+    constructor(private _router: Router, private authService: AuthService) {}
 
     criarConta() {
-        console.log('User account has been created!');
+        this.authService.signUp(this.user).subscribe(() => {
+            this._router.navigate(['/notes']);
+        });
     }
 }

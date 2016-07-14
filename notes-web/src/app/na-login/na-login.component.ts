@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {User} from "../model/user";
+import {AuthService} from "../shared/auth.service";
 /**
  * Created by asbarros on 06/07/2016.
  */
@@ -12,12 +13,13 @@ import {User} from "../model/user";
     directives: [ROUTER_DIRECTIVES]
 })
 export class NaLoginComponent {
-    public user: User;
+    public user: User = new User(null, null, null, null);
     
-    constructor() {
-        this.user = new User('', '', '', '');
-    }
+    constructor(private authService: AuthService, private _router: Router) {}
     
     login() {
+        this.authService.signIn(this.user).subscribe(() => {
+            this._router.navigate(['/notes']);
+        });
     }
 }

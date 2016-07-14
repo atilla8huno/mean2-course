@@ -6,7 +6,8 @@ import {FORM_DIRECTIVES} from "@angular/common";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
-
+import { HttpClient } from './app/shared/http-client';
+import { AuthService } from './app/shared/auth.service';
 
 if (environment.production) {
     enableProdMode();
@@ -18,5 +19,7 @@ bootstrap(AppComponent, [
     APP_ROUTER_PROVIDERS,
     FORM_DIRECTIVES,
     HTTP_PROVIDERS,
-    ROUTER_DIRECTIVES
+    ROUTER_DIRECTIVES,
+    HttpClient,
+    AuthService
 ]);

@@ -8,7 +8,7 @@ import {NaNotesService} from "../na-notes.service";
 
 @Component({
     moduleId: module.id,
-    selector: 'app-na-notes-form',
+    selector: 'na-notes-form',
     templateUrl: 'na-notes-form.component.html',
     styleUrls: ['na-notes-form.component.css'],
     directives: [NaNoteComponent],
