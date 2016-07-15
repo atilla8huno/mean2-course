@@ -9,27 +9,21 @@ var Service = {
     update: updateNote,
     delete: deleteNote,
     findById: findById,
-    findByUser: findByUser,
-    findAll: findAll
+    findByUserEmail: findByUserEmail
 };
 
 function createNote(note) {
     return new Promise(function (resolve, reject) {
-        UserService.findById(note.user)
-            .then(function () {
-                note.save(function (err, doc) {
-                    if (err) return reject(err);
-                    
-                    resolve(doc);
-                });
-            }, function (error) {
-                return reject(error);
-            });
+        note.save(function (err, doc) {
+            if (err) return reject(err);
+
+            resolve(doc);
+        });
     });
 }
 
 function updateNote(note) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {        
         Note.findByIdAndUpdate(note._id, note, function (err, doc) {
             if (err) return reject(err);
             if (!doc) return reject('Nota não encontrada.');
@@ -61,26 +55,15 @@ function findById(id) {
     });
 }
 
-function findAll() {
-    return new Promise(function (resolve, reject) {
-        var criteria = {};
-        
-        Note.find(criteria, function (err, docs) {
-            if (err) return reject(err);
-
-            resolve(docs);
-        });
-    });
-}
-
-function findByUser(user) {
+function findByUserEmail(userEmail) {
     return new Promise(function (resolve, reject) {
         var criteria = {
-            user: user
+            userEmail: userEmail
         };
 
         Note.find(criteria, function (err, docs) {
             if (err) return reject(err);
+            if (!docs) return reject('Nenhuma nota encontrada.');
 
             resolve(docs);
         });

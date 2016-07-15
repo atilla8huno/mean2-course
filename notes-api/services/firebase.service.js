@@ -1,5 +1,5 @@
 /**
- * Created by asbarros on 15/07/2016.
+ * Created by atilla8huno on 15/07/2016.
  */
 var firebase = require('firebase');
 var Promise = require('promise');

@@ -16,15 +16,16 @@ import {NaNotesService} from "../na-notes.service";
 })
 export class NaNotesFormComponent implements OnInit, OnDestroy {
 
-    @Input() note: Note = new Note(null, null, null);
-    private subscription: Subscription;
+    @Input() note:Note = new Note(null, null, null);
+    private subscription:Subscription;
 
-    constructor(private _route: ActivatedRoute, private _notesService: NaNotesService) {}
+    constructor(private _route:ActivatedRoute, private _notesService:NaNotesService) {
+    }
 
-    ngOnInit() {
+    ngOnInit():any {
         this.subscription = this._route.params.subscribe((params) => {
             let id = params['id'];
-            
+
             if (id) {
                 this._notesService.findById(id).subscribe((note) => {
                     this.note = note;
@@ -33,15 +34,37 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
         });
     }
 
-    salvar() {
-        
+    salvar():void {
+        if (this.note._id) {
+            this._notesService.update(this.note).subscribe(
+                (note) => {
+                    this.note = new Note(null, null, null);
+                    console.log(note);
+                },
+                (err) => console.error(err)
+            );
+        } else {
+            this._notesService.save(this.note).subscribe(
+                (note) => {
+                    this.note = new Note(null, null, null);
+                    console.log(note);
+                },
+                (err) => console.error(err)
+            );
+        }
     }
 
-    excluir() {
-        
+    excluir():void {
+        this._notesService.remove(this.note._id).subscribe(
+            (result) => {
+                this.note = new Note(null, null, null);
+                console.log(result);
+            },
+            (err) => console.error(err)
+        );
     }
 
-    ngOnDestroy() {
+    ngOnDestroy():any {
         this.subscription.unsubscribe();
     }
 }
