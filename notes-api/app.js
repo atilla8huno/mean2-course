@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var connection = require('./connection');
 
 var defaultRoutes = require('./routes/index');
@@ -33,6 +32,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+// APIs
 app.use('/note', noteRoutes);
 app.use('/user', userRoutes);
 app.use('/', defaultRoutes);

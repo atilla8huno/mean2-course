@@ -5,6 +5,16 @@ var express = require('express');
 var router = express.Router();
 var NoteService = require('../services/note.service');
 var Note = require('../model/note');
+var firebase = require('firebase');
+
+// Firebase setup
+firebase.initializeApp({
+    serviceAccount: "./connection/firebase.json",
+    authDomain: "mean-course-2.firebaseapp.com",
+    databaseURL: "https://mean-course-2.firebaseio.com"
+});
+
+var auth = firebase.auth();
 
 router.get('/by-id/:id', function (req, res, next) {
     var id = req.params.id;
@@ -15,7 +25,7 @@ router.get('/by-id/:id', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-            res.status(404).json(error);
+            res.status(404).send(error);
         });
 });
 
@@ -28,20 +38,25 @@ router.get('/by-user/:user', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-            res.status(404).json(error);
+            res.status(404).send(error);
         });
 });
 
 
 router.get('/all', function (req, res, next) {
-    NoteService.findAll()
-        .then(function (docs) {
-            console.log(docs);
 
-            res.status(200).json(docs);
-        }, function (error) {
-            res.status(404).json(error);
-        });
+    var token = req.get('X-Auth-Token');
+
+    auth.verifyIdToken(token).then(function(user) {
+        NoteService.findAll()
+            .then(function (docs) {
+                console.log(docs);
+
+                res.status(200).json(docs);
+            }, function (error) {
+                res.status(404).send(error);
+            });
+    });
 });
 
 router.post('/create', function (req, res, next) {
@@ -58,7 +73,7 @@ router.post('/create', function (req, res, next) {
             res.header('Location', '/note/id/' + doc._id);
             res.status(201).json(doc);
         }, function (error) {
-            res.status(404).json(error);
+            res.status(404).send(error);
         });
 });
 
@@ -76,7 +91,7 @@ router.put('/update', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-            res.status(404).json(error);
+            res.status(404).send(error);
         });
 });
 
@@ -90,7 +105,7 @@ router.delete('/delete/:id', function (req, res, next) {
 
             res.status(200).json(doc);
         }, function (error) {
-            res.status(404).json(error);
+            res.status(404).send(error);
         });
 });
 
