@@ -19,6 +19,8 @@ export class AuthService {
                     });
 
                     observer.next();
+                }).catch(function (err) {
+                    observer.error(err);
                 });
         });
     }
@@ -32,6 +34,8 @@ export class AuthService {
                     });
 
                     observer.next();
+                }).catch(function (err) {
+                    observer.error(err);
                 });
         });
     }
@@ -43,11 +47,13 @@ export class AuthService {
                     localStorage.clear();
 
                     observer.next();
+                }).catch(function (err) {
+                    observer.error(err);
                 });
             });
     }
 
-    static isAutheticated(): boolean {
+    isAutheticated(): boolean {
         return firebase.auth().currentUser;
     }
 }

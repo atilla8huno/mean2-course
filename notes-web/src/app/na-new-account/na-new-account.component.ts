@@ -14,14 +14,15 @@ import {AuthService} from "../shared/auth.service";
     directives: [ROUTER_DIRECTIVES]
 })
 export class NaNewAccountComponent {
-    public user: User = new User(null, null, null, null);
+    public user: User = new User(null, null);
     public users: Array<User> = [];
 
     constructor(private _router: Router, private authService: AuthService) {}
 
     criarConta() {
-        this.authService.signUp(this.user).subscribe(() => {
-            this._router.navigate(['/notes']);
-        });
+        this.authService.signUp(this.user).subscribe(
+            () => this._router.navigate(['/notes']),
+            (err) => console.error(err)
+        );
     }
 }

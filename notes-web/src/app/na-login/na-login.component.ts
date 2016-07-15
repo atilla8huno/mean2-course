@@ -13,13 +13,14 @@ import {AuthService} from "../shared/auth.service";
     directives: [ROUTER_DIRECTIVES]
 })
 export class NaLoginComponent {
-    public user: User = new User(null, null, null, null);
+    public user: User = new User(null, null);
     
     constructor(private authService: AuthService, private _router: Router) {}
     
     login() {
-        this.authService.signIn(this.user).subscribe(() => {
-            this._router.navigate(['/notes']);
-        });
+        this.authService.signIn(this.user).subscribe(
+            () => this._router.navigate(['/notes']),
+            (err) => console.error(err)
+        );
     }
 }

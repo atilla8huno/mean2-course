@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES, RouterConfig, Router} from "@angular/router";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {AuthService} from "./auth.service";
+
 /**
  * Created by asbarros on 06/07/2016.
  */
@@ -16,12 +17,13 @@ export class NaMenuComponent {
     constructor(private authService: AuthService, private _router: Router) {}
 
     logout() {
-        this.authService.signOut().subscribe(() => {
-            this._router.navigate(['/signin']);
-        });
+        this.authService.signOut().subscribe(
+            () => this._router.navigate(['/signin']),
+            (err) => console.error(err)
+        );
     }
 
     isAuthenticated(): boolean {
-        return AuthService.isAutheticated();
+        return this.authService.isAutheticated();
     }
 }
