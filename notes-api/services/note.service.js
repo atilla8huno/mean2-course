@@ -3,7 +3,6 @@
  */
 var Note = require('../model/note');
 var Promise = require('promise');
-var UserService = require('./user.service');
 
 var Service = {
     create: createNote,

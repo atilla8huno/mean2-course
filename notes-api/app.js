@@ -8,7 +8,6 @@ var connection = require('./connection');
 
 var defaultRoutes = require('./routes/index');
 var noteRoutes = require('./routes/note.api');
-var userRoutes = require('./routes/user.api');
 
 var app = express();
 
@@ -34,7 +33,6 @@ app.use(function(req, res, next) {
 
 // APIs
 app.use('/note', noteRoutes);
-app.use('/user', userRoutes);
 app.use('/', defaultRoutes);
 
 // MongoDB connection

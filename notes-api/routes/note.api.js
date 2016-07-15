@@ -16,9 +16,22 @@ firebase.initializeApp({
 
 var auth = firebase.auth();
 
+router.use('/', function (req, res, next) {
+    if (req.method === 'OPTIONS') {
+        next();
+    } else {
+        auth.verifyIdToken(req.get('X-Auth-Token'))
+            .then(function() {
+                next();
+            }, function(error) {
+                res.status(401).send(error);
+            });
+    }
+});
+
 router.get('/by-id/:id', function (req, res, next) {
     var id = req.params.id;
-
+    
     NoteService.findById(id)
         .then(function (doc) {
             console.log(doc);
@@ -29,22 +42,7 @@ router.get('/by-id/:id', function (req, res, next) {
         });
 });
 
-router.get('/by-user/:user', function (req, res, next) {
-    var user = req.params.user;
-
-    NoteService.findByUser(user)
-        .then(function (doc) {
-            console.log(doc);
-
-            res.status(200).json(doc);
-        }, function (error) {
-            res.status(404).send(error);
-        });
-});
-
-
 router.get('/all', function (req, res, next) {
-
     var token = req.get('X-Auth-Token');
 
     auth.verifyIdToken(token).then(function(user) {
@@ -60,39 +58,47 @@ router.get('/all', function (req, res, next) {
 });
 
 router.post('/create', function (req, res, next) {
-    var note = new Note({
-        title: req.body.title,
-        description: req.body.description,
-        user: req.body.user
-    });
+    var token = req.get('X-Auth-Token');
 
-    NoteService.create(note)
-        .then(function (doc) {
-            console.log(doc);
-
-            res.header('Location', '/note/id/' + doc._id);
-            res.status(201).json(doc);
-        }, function (error) {
-            res.status(404).send(error);
+    auth.verifyIdToken(token).then(function(user) {
+        var note = new Note({
+            title: req.body.title,
+            description: req.body.description,
+            userEmail: user.email
         });
+
+        NoteService.create(note)
+            .then(function (doc) {
+                console.log(doc);
+
+                res.header('Location', '/note/id/' + doc._id);
+                res.status(201).json(doc);
+            }, function (error) {
+                res.status(404).send(error);
+            });
+    });
 });
 
 router.put('/update', function (req, res, next) {
-    var note = new Note({
-        _id: req.body._id,
-        title: req.body.title,
-        description: req.body.description
-    });
+    var token = req.get('X-Auth-Token');
 
-    NoteService.update(note)
-        .then(function (doc) {
-            // the OLD doc
-            console.log(doc);
-
-            res.status(200).json(doc);
-        }, function (error) {
-            res.status(404).send(error);
+    auth.verifyIdToken(token).then(function(user) {
+        var note = new Note({
+            _id: req.body._id,
+            title: req.body.title,
+            description: req.body.description
         });
+
+        NoteService.update(note)
+            .then(function (doc) {
+                // the OLD doc
+                console.log(doc);
+
+                res.status(200).json(doc);
+            }, function (error) {
+                res.status(404).send(error);
+            });
+    });
 });
 
 router.delete('/delete/:id', function (req, res, next) {
