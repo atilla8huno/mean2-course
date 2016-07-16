@@ -5,6 +5,7 @@ import {Subscription} from "rxjs/Rx";
 import {NaNoteComponent} from "../na-note/na-note.component";
 import {Note} from "../../model/note";
 import {NaNotesService} from "../na-notes.service";
+import {MessageUtil} from "../../shared/message.util";
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,7 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
     @Input() note:Note = new Note(null, null, null);
     private subscription:Subscription;
 
-    constructor(private _route:ActivatedRoute, private _notesService:NaNotesService) {
+    constructor(private _route:ActivatedRoute, private _notesService:NaNotesService, private msgUtil:MessageUtil) {
     }
 
     ngOnInit():any {
@@ -27,9 +28,10 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
             let id = params['id'];
 
             if (id) {
-                this._notesService.findById(id).subscribe((note) => {
-                    this.note = note;
-                });
+                this._notesService.findById(id).subscribe(
+                    (note) => this.note = note,
+                    (err) => this.msgUtil.addAlertError(err.message)
+                );
             }
         });
     }
@@ -38,29 +40,29 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
         if (this.note._id) {
             this._notesService.update(this.note).subscribe(
                 (note) => {
+                    this.msgUtil.addAlertSuccess('Note ' + note.title + ' atualizado com sucesso!');
                     this.note = new Note(null, null, null);
-                    console.log(note);
                 },
-                (err) => console.log(err)
+                (err) => this.msgUtil.addAlertError(err.message)
             );
         } else {
             this._notesService.save(this.note).subscribe(
                 (note) => {
+                    this.msgUtil.addAlertSuccess('Note ' + note.title + ' salvo com sucesso!');
                     this.note = new Note(null, null, null);
-                    console.log(note);
                 },
-                (err) => console.log(err)
+                (err) => this.msgUtil.addAlertError(err.message)
             );
         }
     }
 
     excluir():void {
         this._notesService.remove(this.note._id).subscribe(
-            (result) => {
+            () => {
+                this.msgUtil.addAlertSuccess('Note excluído com sucesso!');
                 this.note = new Note(null, null, null);
-                console.log(result);
             },
-            (err) => console.log(err)
+            (err) => this.msgUtil.addAlertError(err.message)
         );
     }
 

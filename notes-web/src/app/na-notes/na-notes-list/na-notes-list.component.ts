@@ -3,6 +3,7 @@ import {NaNoteComponent} from "../na-note/na-note.component";
 import {Note} from "../../model/note";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {NaNotesService} from "../na-notes.service";
+import {MessageUtil} from "../../shared/message.util";
 
 @Component({
     moduleId: module.id,
@@ -16,13 +17,19 @@ export class NaNotesListComponent implements OnInit {
 
     public notes:Note[] = [];
 
-    constructor(private notesService:NaNotesService) {
+    constructor(private notesService:NaNotesService, private msgUtil:MessageUtil) {
     }
 
     ngOnInit():any {
         this.notesService.findAll().subscribe(
-            notes => this.notes = notes,
-            err => console.log(err)
+            (notes) => this.notes = notes,
+            (err) => {
+                if (err.status === 404) {
+                    this.msgUtil.addAlertWarning(err.message);
+                } else {
+                    this.msgUtil.addAlertError(err.message);
+                }
+            }
         );
     }
 
