@@ -21,12 +21,11 @@ export class NaNoteComponent {
 
     excluir():void {
         this._notesService.remove(this.note._id).subscribe(
-            (result) => {
+            () => {
                 this.remove.emit(this.note);
-                console.log(result);
                 this.note = new Note(null, null, null);
             },
-            (err) => console.error(err)
+            (err) => console.log(err)
         );
     }
 }

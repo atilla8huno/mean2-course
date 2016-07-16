@@ -24,6 +24,6 @@ export class NaMenuComponent {
     }
 
     isAuthenticated(): boolean {
-        return this.authService.isAutheticated();
+        return AuthService.isAutheticated();
     }
 }

@@ -16,7 +16,11 @@ router.use('/', function (req, res, next) {
             
             next();
         }, function (error) {
-            res.status(401).send(error);
+            res.status(401).send({
+                status: 401,
+                message: 'Autenticação obrigatória.',
+                source: error
+            });
         });
     }
 });
@@ -28,12 +32,18 @@ router.get('/by-id/:id', function (req, res, next) {
     NoteService.findById(id)
         .then(function (doc) {
             if (doc.userEmail !== userEmail) {
-                res.status(401).send('Você não tem acesso a notas de outro usuário.');
+                res.status(401).send({
+                    status: 401,
+                    message: 'Você não tem acesso a notas de outro usuário.'
+                });
             } else {
                 res.status(200).json(doc);    
             }
         }, function (error) {
-            res.status(404).send(error);
+            res.status(404).send({
+                status: 404,
+                message: error
+            });
         });
 });
 
@@ -42,7 +52,10 @@ router.get('/all', function (req, res, next) {
         .then(function (docs) {
             res.status(200).json(docs);
         }, function (error) {
-            res.status(404).send(error);
+            res.status(404).send({
+                status: 404,
+                message: error
+            });
         });
 });
 
@@ -58,7 +71,10 @@ router.post('/create', function (req, res, next) {
             res.header('Location', '/note/by-id/' + doc._id);
             res.status(201).json(doc);
         }, function (error) {
-            res.status(404).send(error);
+            res.status(404).send({
+                status: 404,
+                message: error
+            });
         });
 });
 
@@ -66,7 +82,10 @@ router.put('/update', function (req, res, next) {
     NoteService.findById(req.body._id)
         .then(function (doc) {
             if (doc.userEmail !== req.userEmail) {
-                res.status(401).send('Você não tem acesso a notas de outro usuário.');
+                res.status(401).send({
+                    status: 401,
+                    message: 'Você não tem acesso a notas de outro usuário.'
+                });
             } else {
                 var note = new Note({
                     _id: req.body._id,
@@ -81,11 +100,17 @@ router.put('/update', function (req, res, next) {
                         
                         res.status(200).json(note);
                     }, function (error) {
-                        res.status(404).send(error);
+                        res.status(404).send({
+                            status: 404,
+                            message: error
+                        });
                     });
             }
         }, function (error) {
-            res.status(404).send(error);
+            res.status(404).send({
+                status: 404,
+                message: error
+            });
         });
 });
 
@@ -104,11 +129,17 @@ router.delete('/delete/:id', function (req, res, next) {
 
                         res.status(200).json(doc);
                     }, function (error) {
-                        res.status(404).send(error);
+                        res.status(404).send({
+                            status: 404,
+                            message: error
+                        });
                     });
             }
         }, function (error) {
-            res.status(404).send(error);
+            res.status(404).send({
+                status: 404,
+                message: error
+            });
         });
 });
 

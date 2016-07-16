@@ -41,7 +41,7 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
                     this.note = new Note(null, null, null);
                     console.log(note);
                 },
-                (err) => console.error(err)
+                (err) => console.log(err)
             );
         } else {
             this._notesService.save(this.note).subscribe(
@@ -49,7 +49,7 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
                     this.note = new Note(null, null, null);
                     console.log(note);
                 },
-                (err) => console.error(err)
+                (err) => console.log(err)
             );
         }
     }
@@ -60,7 +60,7 @@ export class NaNotesFormComponent implements OnInit, OnDestroy {
                 this.note = new Note(null, null, null);
                 console.log(result);
             },
-            (err) => console.error(err)
+            (err) => console.log(err)
         );
     }
 

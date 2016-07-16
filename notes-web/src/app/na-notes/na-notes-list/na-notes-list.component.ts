@@ -22,7 +22,7 @@ export class NaNotesListComponent implements OnInit {
     ngOnInit():any {
         this.notesService.findAll().subscribe(
             notes => this.notes = notes,
-            err => console.error(err)
+            err => console.log(err)
         );
     }
 

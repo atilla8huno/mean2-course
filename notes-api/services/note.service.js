@@ -63,7 +63,7 @@ function findByUserEmail(userEmail) {
 
         Note.find(criteria, function (err, docs) {
             if (err) return reject(err);
-            if (!docs) return reject('Nenhuma nota encontrada.');
+            if (!docs || !docs.length > 0) return reject('Nenhuma nota encontrada.');
 
             resolve(docs);
         });
