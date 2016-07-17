@@ -6,6 +6,7 @@ import {FORM_DIRECTIVES, CORE_DIRECTIVES} from "@angular/common";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { AuthGuard } from './app/shared/auth-guard';
 import { HttpClient } from './app/shared/http-client';
 import { AuthService } from './app/shared/auth.service';
 import { MessageUtil } from './app/shared/message.util';
@@ -22,6 +23,7 @@ bootstrap(AppComponent, [
     HTTP_PROVIDERS,
     ROUTER_DIRECTIVES,
     CORE_DIRECTIVES,
+    AuthGuard,
     HttpClient,
     AuthService,
     MessageUtil

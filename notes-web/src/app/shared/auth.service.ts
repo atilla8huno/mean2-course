@@ -2,13 +2,11 @@
  * Created by ATILLA on 13/07/2016.
  */
 import {Injectable} from "@angular/core";
-import {User} from "../model/user";
 import {Observable} from "rxjs/Rx";
+import {User} from "../model/user";
 
 @Injectable()
 export class AuthService {
-
-    private static currentUser:any;
 
     constructor() {
         firebase.auth().onAuthStateChanged(function (user) {
@@ -16,10 +14,7 @@ export class AuthService {
                 user.getToken().then(function (token) {
                     localStorage.setItem('X-Auth-Token', token);
                 });
-
-                AuthService.currentUser = user;
             } else {
-                AuthService.currentUser = null;
                 localStorage.clear();
             }
         });
@@ -65,6 +60,10 @@ export class AuthService {
     }
 
     static isAutheticated():boolean {
-        return AuthService.currentUser;
+        if (firebase.auth().currentUser) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
