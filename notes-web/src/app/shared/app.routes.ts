@@ -8,11 +8,11 @@ import {AuthGuard} from "./auth-guard";
 /**
  * Created by atilla8huno on 06/07/16.
  */
-export const routes: RouterConfig = [
-    { path: '', redirectTo: '/signin', pathMatch: 'full' },
-    { path: 'signin', component: NaLoginComponent },
-    { path: 'signup', component: NaNewAccountComponent },
-    { path: 'notes', component: NaNotesComponent, children: NOTES_ROUTES, canActivate: [AuthGuard] }
+export const routes:RouterConfig = [
+    {path: '', redirectTo: '/signin', pathMatch: 'full'},
+    {path: 'signin', component: NaLoginComponent},
+    {path: 'signup', component: NaNewAccountComponent},
+    {path: 'notes', component: NaNotesComponent, children: NOTES_ROUTES, canActivate: [AuthGuard]}
 ];
 
 export const APP_ROUTER_PROVIDERS = [

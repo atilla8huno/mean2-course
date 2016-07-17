@@ -29,8 +29,8 @@ export class AuthService {
                         observer.next();
                     });
                 }).catch(function (err) {
-                    observer.error(err);
-                });
+                observer.error(err);
+            });
         });
     }
 
@@ -43,8 +43,8 @@ export class AuthService {
                         observer.next();
                     });
                 }).catch(function (err) {
-                    observer.error(err);
-                });
+                observer.error(err);
+            });
         });
     }
 
@@ -54,8 +54,8 @@ export class AuthService {
                 .then(function () {
                     observer.next();
                 }).catch(function (err) {
-                    observer.error(err);
-                });
+                observer.error(err);
+            });
         });
     }
 
