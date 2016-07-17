@@ -2,7 +2,6 @@
  * Created by atilla8huno on 07/07/16.
  */
 var Note = require('../model/note');
-var Promise = require('promise');
 
 var Service = {
     create: createNote,
