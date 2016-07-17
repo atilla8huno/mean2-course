@@ -22,11 +22,11 @@ function createNote(note) {
 }
 
 function updateNote(note) {
-    return new Promise(function (resolve, reject) {        
+    return new Promise(function (resolve, reject) {
         Note.findByIdAndUpdate(note._id, note, function (err, doc) {
             if (err) return reject(err);
             if (!doc) return reject('Nota não encontrada.');
-            
+
             resolve(doc);
         });
     });
@@ -37,7 +37,7 @@ function deleteNote(id) {
         Note.findByIdAndRemove(id, function (err, doc) {
             if (err) return reject(err);
             if (!doc) return reject('Nota não encontrada.');
-            
+
             resolve(doc);
         });
     });
@@ -48,7 +48,7 @@ function findById(id) {
         Note.findById(id, function (err, doc) {
             if (err) return reject(err);
             if (!doc) return reject('Nota não encontrada.');
-            
+
             resolve(doc);
         });
     });

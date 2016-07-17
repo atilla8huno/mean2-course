@@ -13,7 +13,7 @@ router.use('/', function (req, res, next) {
     } else {
         firebaseService.validateToken(req.get('X-Auth-Token')).then(function (user) {
             req.userEmail = user.email;
-            
+
             next();
         }, function (error) {
             res.status(401).send({
@@ -28,7 +28,7 @@ router.use('/', function (req, res, next) {
 router.get('/by-id/:id', function (req, res, next) {
     var id = req.params.id;
     var userEmail = req.userEmail;
-    
+
     NoteService.findById(id)
         .then(function (doc) {
             if (doc.userEmail !== userEmail) {
@@ -37,7 +37,7 @@ router.get('/by-id/:id', function (req, res, next) {
                     message: 'Você não tem acesso a notas de outro usuário.'
                 });
             } else {
-                res.status(200).json(doc);    
+                res.status(200).json(doc);
             }
         }, function (error) {
             res.status(404).send({
@@ -97,7 +97,7 @@ router.put('/update', function (req, res, next) {
                     .then(function (doc) {
                         // the OLD doc
                         console.log(doc);
-                        
+
                         res.status(200).json(note);
                     }, function (error) {
                         res.status(404).send({

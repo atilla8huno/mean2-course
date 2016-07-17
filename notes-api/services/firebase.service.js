@@ -20,9 +20,9 @@ var firebaseService = {
 function validateToken(token) {
     return new Promise(function (resolve, reject) {
         auth.verifyIdToken(token)
-            .then(function(user) {
+            .then(function (user) {
                 resolve(user);
-            }, function(error) {
+            }, function (error) {
                 reject(error);
             });
     });
