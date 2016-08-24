@@ -1,8 +1,6 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Rx";
-
-import {NaNoteComponent} from "../na-note/na-note.component";
 import {Note} from "../../model/note";
 import {NaNotesService} from "../na-notes.service";
 import {MessageUtil} from "../../shared/message.util";
@@ -12,7 +10,6 @@ import {MessageUtil} from "../../shared/message.util";
     selector: 'na-notes-form',
     templateUrl: 'na-notes-form.component.html',
     styleUrls: ['na-notes-form.component.css'],
-    directives: [NaNoteComponent],
     providers: [NaNotesService]
 })
 export class NaNotesFormComponent implements OnInit, OnDestroy {

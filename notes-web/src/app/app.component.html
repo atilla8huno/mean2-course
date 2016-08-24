@@ -5,10 +5,10 @@
 
     <div class="panel-header"></div>
     <div class="panel-body">
-        <alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" [dismissible]="alert.dismissible"
-               (close)="closeAlert(i)" [dismissOnTimeout]="alert.dismissOnTimeout">
-            {{ alert?.msg }}
-        </alert>
+        <!--<alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" [dismissible]="alert.dismissible"-->
+               <!--(close)="closeAlert(i)" [dismissOnTimeout]="alert.dismissOnTimeout">-->
+            <!--{{ alert?.msg }}-->
+        <!--</alert>-->
 
         <router-outlet></router-outlet>
     </div>

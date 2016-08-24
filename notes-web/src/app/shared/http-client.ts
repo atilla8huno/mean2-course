@@ -11,7 +11,7 @@ export class HttpClient {
     constructor(private _http: Http) {}
 
     get(url: string) {
-        return this._http.get(url, { headers: HttpClient.getHeaders() })
+        return this._http.get(url, { headers: HttpClient.getHeaders(), body: "" })
             .map(response => response.json())
             .catch(error => Observable.throw(error.json()));
     }
@@ -33,7 +33,7 @@ export class HttpClient {
     }
 
     delete(url: string) {
-        return this._http.delete(url, { headers: HttpClient.getHeaders() })
+        return this._http.delete(url, { headers: HttpClient.getHeaders(), body: "" })
             .map(response => response.json())
             .catch(error => Observable.throw(error.json()));
     }
