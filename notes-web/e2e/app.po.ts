@@ -1,4 +1,6 @@
-export class NotesWebPage {
+import { browser, element, by } from 'protractor';
+
+export class Angular2fPage {
   navigateTo() {
     return browser.get('/');
   }

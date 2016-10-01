@@ -6,7 +6,6 @@ import {AuthService} from "./auth.service";
  * Created by asbarros on 06/07/2016.
  */
 @Component({
-    moduleId: module.id,
     selector: 'na-menu',
     templateUrl: 'na-menu.component.html',
     styleUrls: ['../app.component.css', 'na-menu.component.css']

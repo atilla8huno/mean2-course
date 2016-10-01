@@ -1,8 +1,8 @@
 {
   "serverName": "mongodb",
-  "username": "jsb2",
-  "password": "jsb2",
-  "dns": "ds031865.mlab.com",
-  "port": "31865",
-  "database": "jsb_curso_angular2"
+  "username": "mean2",
+  "password": "mean2",
+  "dns": "ds047666.mlab.com",
+  "port": "47666",
+  "database": "meancourse"
 }

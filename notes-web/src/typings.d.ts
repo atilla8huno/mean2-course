@@ -2,6 +2,6 @@
 // https://github.com/typings/typings
 // https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html
 
-/// <reference path="../typings/browser.d.ts" />
-declare var module: { id: string };
 declare var firebase: any;
+declare var System: any;
+

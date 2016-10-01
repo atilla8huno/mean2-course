@@ -4,7 +4,6 @@ import {NaNotesService} from "../na-notes.service";
 import {MessageUtil} from "../../shared/message.util";
 
 @Component({
-    moduleId: module.id,
     selector: 'na-note',
     templateUrl: 'na-note.component.html',
     styleUrls: ['na-note.component.css'],

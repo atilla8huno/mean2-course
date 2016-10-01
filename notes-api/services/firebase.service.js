@@ -7,8 +7,8 @@ var Promise = require('promise');
 // Firebase setup
 firebase.initializeApp({
     serviceAccount: "./connection/firebase.json",
-    authDomain: "mean-course-2.firebaseapp.com",
-    databaseURL: "https://mean-course-2.firebaseio.com"
+    authDomain: "meancourse-54a53.firebaseapp.com",
+    databaseURL: "https://meancourse-54a53.firebaseio.com"
 });
 
 var auth = firebase.auth();

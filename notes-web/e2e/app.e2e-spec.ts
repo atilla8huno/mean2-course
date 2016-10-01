@@ -1,10 +1,10 @@
-import { NotesWebPage } from './app.po';
+import { Angular2fPage } from './app.po';
 
-describe('notes-web App', function() {
-  let page: NotesWebPage;
+describe('angular2f App', function() {
+  let page: Angular2fPage;
 
   beforeEach(() => {
-    page = new NotesWebPage();
+    page = new Angular2fPage();
   });
 
   it('should display message saying app works', () => {

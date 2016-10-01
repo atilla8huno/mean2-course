@@ -8,7 +8,6 @@ import {MessageUtil} from "../shared/message.util";
  * Created by asbarros on 06/07/2016.
  */
 @Component({
-    moduleId: module.id,
     selector: 'na-new-account',
     templateUrl: 'na-new-account.component.html',
     styleUrls: ['../app.component.css', 'na-new-account.component.css']

@@ -1,40 +1,33 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>NotesWeb</title>
-    <base href="/">
+  <meta charset="utf-8">
+  <title>Angular2f</title>
+  <base href="/">
 
-    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    {{#unless environment.production}}
-    <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
-    {{/unless}}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
-    <app-root>Loading...</app-root>
+  <app-root>Loading...</app-root>
 
-    {{#each scripts.polyfills}}
-    <script src="{{.}}"></script>
-    {{/each}}
-    <script>
-        System.import('system-config.js').then(function () {
-            System.import('main');
-        }).catch(console.error.bind(console));
-    </script>
-
-    
-	<script>
-	  // Initialize Firebase
-	  var config = {
-		apiKey: "",
-		authDomain: ".firebaseapp.com"
-      };
-      firebase.initializeApp(config);
-    </script>
+  <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyC3ZQrngnJUvrOlktxNdKUBD8EGQHPPoSc",
+      authDomain: "meancourse-54a53.firebaseapp.com",
+      databaseURL: "https://meancourse-54a53.firebaseio.com",
+      storageBucket: "",
+      messagingSenderId: "197434474320"
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
 </html>
