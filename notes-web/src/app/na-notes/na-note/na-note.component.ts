@@ -1,6 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Note} from "../../model/note";
-import {ROUTER_DIRECTIVES} from "@angular/router";
 import {NaNotesService} from "../na-notes.service";
 import {MessageUtil} from "../../shared/message.util";
 
@@ -9,7 +8,6 @@ import {MessageUtil} from "../../shared/message.util";
     selector: 'na-note',
     templateUrl: 'na-note.component.html',
     styleUrls: ['na-note.component.css'],
-    directives: [ROUTER_DIRECTIVES],
     providers: [NaNotesService]
 })
 export class NaNoteComponent {

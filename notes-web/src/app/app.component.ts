@@ -1,17 +1,12 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ROUTER_DIRECTIVES} from "@angular/router";
 import {Subscription} from "rxjs/Rx";
-import {AlertComponent} from "ng2-bootstrap/ng2-bootstrap";
-
 import {MessageUtil} from "./shared/message.util";
-import {NaMenuComponent} from "./shared/na-menu.component";
 
 @Component({
     moduleId: module.id,
     selector: 'app-root',
     templateUrl: 'app.component.html',
-    styleUrls: ['app.component.css'],
-    directives: [NaMenuComponent, ROUTER_DIRECTIVES, AlertComponent]
+    styleUrls: ['app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
     

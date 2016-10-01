@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NaNoteComponent} from "../na-note/na-note.component";
 import {Note} from "../../model/note";
-import {ROUTER_DIRECTIVES} from "@angular/router";
 import {NaNotesService} from "../na-notes.service";
 import {MessageUtil} from "../../shared/message.util";
 
@@ -10,18 +8,17 @@ import {MessageUtil} from "../../shared/message.util";
     selector: 'na-notes-list',
     templateUrl: 'na-notes-list.component.html',
     styleUrls: ['na-notes-list.component.css'],
-    directives: [NaNoteComponent, ROUTER_DIRECTIVES],
     providers: [NaNotesService]
 })
 export class NaNotesListComponent implements OnInit {
 
     public notes:Note[] = [];
 
-    constructor(private notesService:NaNotesService, private msgUtil:MessageUtil) {
+    constructor(private _notesService:NaNotesService, private msgUtil:MessageUtil) {
     }
 
     ngOnInit():any {
-        this.notesService.findAll().subscribe(
+        this._notesService.findAll().subscribe(
             (notes) => this.notes = notes,
             (err) => {
                 if (err.status === 404) {

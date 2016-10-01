@@ -1,8 +1,9 @@
 import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {User} from "../model/user";
 import {AuthService} from "../shared/auth.service";
 import {MessageUtil} from "../shared/message.util";
+
 /**
  * Created by asbarros on 06/07/2016.
  */
@@ -10,8 +11,7 @@ import {MessageUtil} from "../shared/message.util";
     moduleId: module.id,
     selector: 'na-login',
     templateUrl: 'na-login.component.html',
-    styleUrls: ['na-login.component.css'],
-    directives: [ROUTER_DIRECTIVES]
+    styleUrls: ['na-login.component.css']
 })
 export class NaLoginComponent {
     public user:User = new User(null, null);

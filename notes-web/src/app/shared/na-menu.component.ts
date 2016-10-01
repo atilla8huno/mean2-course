@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {AuthService} from "./auth.service";
 
 /**
@@ -9,8 +9,7 @@ import {AuthService} from "./auth.service";
     moduleId: module.id,
     selector: 'na-menu',
     templateUrl: 'na-menu.component.html',
-    styleUrls: ['../app.component.css', 'na-menu.component.css'],
-    directives: [ROUTER_DIRECTIVES]
+    styleUrls: ['../app.component.css', 'na-menu.component.css']
 })
 export class NaMenuComponent {
 

@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 import {User} from "../model/user";
 import {AuthService} from "../shared/auth.service";
@@ -11,8 +11,7 @@ import {MessageUtil} from "../shared/message.util";
     moduleId: module.id,
     selector: 'na-new-account',
     templateUrl: 'na-new-account.component.html',
-    styleUrls: ['../app.component.css', 'na-new-account.component.css'],
-    directives: [ROUTER_DIRECTIVES]
+    styleUrls: ['../app.component.css', 'na-new-account.component.css']
 })
 export class NaNewAccountComponent {
     public user:User = new User(null, null);
