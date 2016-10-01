@@ -15,7 +15,7 @@ import {MessageUtil} from "../../shared/message.util";
 export class NaNoteComponent {
 
     @Input() note:Note;
-    @Output() remove:EventEmitter<any> = new EventEmitter();
+    @Output() remove:EventEmitter<Note> = new EventEmitter<Note>();
 
     constructor(private _notesService:NaNotesService, private msgUtil:MessageUtil) {
     }

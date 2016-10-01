@@ -9,9 +9,9 @@ import {User} from "../model/user";
 export class AuthService {
 
     constructor() {
-        firebase.auth().onAuthStateChanged(function (user) {
+        firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                user.getToken().then(function (token) {
+                user.getToken().then((token) => {
                     localStorage.setItem('X-Auth-Token', token);
                 });
             } else {
@@ -20,46 +20,50 @@ export class AuthService {
         });
     }
 
-    signUp(user:User):Observable<any> {
+    signUp(user: User): Observable<any> {
         return Observable.create(observer => {
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-                .then(function (currentUser) {
-                    currentUser.getToken().then(function (token) {
-                        localStorage.setItem('X-Auth-Token', token);
-                        observer.next();
-                    });
-                }).catch(function (err) {
-                observer.error(err);
-            });
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(
+                (currentUser) => {
+                    currentUser.getToken().then(
+                        (token) => {
+                            localStorage.setItem('X-Auth-Token', token);
+                            observer.next();
+                        }
+                    );
+                }).catch((err) => {
+                    observer.error(err);
+                });
         });
     }
 
-    signIn(user:User):Observable<any> {
+    signIn(user: User): Observable<any> {
         return Observable.create(observer => {
-            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-                .then(function (currentUser) {
-                    currentUser.getToken().then(function (token) {
-                        localStorage.setItem('X-Auth-Token', token);
-                        observer.next();
-                    });
-                }).catch(function (err) {
-                observer.error(err);
-            });
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(
+                (currentUser) => {
+                    currentUser.getToken().then(
+                        (token) => {
+                            localStorage.setItem('X-Auth-Token', token);
+                            observer.next();
+                        }
+                    );
+                }).catch((err) => {
+                    observer.error(err);
+                });
         });
     }
 
-    signOut():Observable<any> {
+    signOut(): Observable<any> {
         return Observable.create(observer => {
-            firebase.auth().signOut()
-                .then(function () {
+            firebase.auth().signOut().then(
+                () => {
                     observer.next();
-                }).catch(function (err) {
-                observer.error(err);
-            });
+                }).catch((err) => {
+                    observer.error(err);
+                });
         });
     }
 
-    static isAutheticated():boolean {
+    static isAutheticated(): boolean {
         if (firebase.auth().currentUser) {
             return true;
         } else {
