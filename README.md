@@ -12,9 +12,8 @@ inside notes-web folder, run:
 
 # firebase and mongodb setup
 on notes-api project:
-- delete firebase.json
-- paste your firebase.json instead (from firebase project)
+- paste firebase.json in /notes-api/connection folder (from your firebase project)
 - change mongodb.json to your mongodb (mlab.com) settings
 
 on notes-web project:
-- change index.html to your firebase project setup
+- change index.html to your firebase project settings
