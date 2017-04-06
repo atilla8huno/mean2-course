@@ -12,31 +12,31 @@ export class NaNotesService {
     }
 
     findById(id:string):Observable<any> {
-        const url = 'http://localhost:3000/note/by-id/' + id;
+        const url = 'http://138.68.246.241:3000/note/by-id/' + id;
 
         return this.httpClient.get(url);
     }
 
     findAll():Observable<any> {
-        const url = 'http://localhost:3000/note/all';
+        const url = 'http://138.68.246.241:3000/note/all';
 
         return this.httpClient.get(url);
     }
 
     save(note:Note):Observable<any> {
-        const url = 'http://localhost:3000/note/create';
+        const url = 'http://138.68.246.241:3000/note/create';
 
         return this.httpClient.post(url, note);
     }
 
     update(note:Note):Observable<any> {
-        const url = 'http://localhost:3000/note/update';
+        const url = 'http://138.68.246.241:3000/note/update';
 
         return this.httpClient.put(url, note);
     }
 
     remove(id:string):Observable<any> {
-        const url = 'http://localhost:3000/note/delete/' + id;
+        const url = 'http://138.68.246.241:3000/note/delete/' + id;
 
         return this.httpClient.delete(url);
     }
