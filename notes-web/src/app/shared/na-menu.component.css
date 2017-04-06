@@ -1,0 +1,24 @@
+header {
+    margin: 20px;
+}
+
+ul {
+    text-align: center;
+}
+
+li {
+    float: none;
+    display: inline-block;
+}
+
+a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.router-link-active,
+.nav-item.router-link-active {
+    background-color: #337ab7;
+    color: white;
+}

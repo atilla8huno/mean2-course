@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span>{{note.title}}</span>
+    </div>
+
+    <div class="panel-body">
+        <span>{{note.description}}</span>
+    </div>
+
+    <div class="panel-footer clearfix">
+        <button class="btn btn-danger pull-right" *ngIf="note._id" (click)="excluir()">Excluir</button>
+        <a class="btn btn-default pull-right" *ngIf="note._id" [routerLink]="[note._id]">Editar</a>
+    </div>
+</div>
